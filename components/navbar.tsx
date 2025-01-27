@@ -8,20 +8,15 @@ type NavLink = {
   href: string;
 };
 
-const navLinks: NavLink[] = [
-  { name: "Om", href: "/about" },
-  { name: "Utgivelser", href: "/releases" },
-  { name: "Bars", href: "/bars" },
-  { name: "Konserts", href: "/concerts" },
-  { name: "Shop", href: "/shop" },
-];
+const navLinks: NavLink[] = [{ name: "Meny", href: "/about" }];
 
 const Navbar = () => {
-  const [logoText, setLogoText] = useState("My Logo");
+  const [logoText, setLogoText] = useState("Av spillere - for spillere");
+  const [activeLink, setActiveLink] = useState<string>("");
 
   return (
-    <nav className="bg-gray-800 text-white">
-      <div className="container mx-auto px-4 flex justify-between items-center h-16">
+    <nav className="text-black h-[80px] font-inter font-semibold">
+      <div className="container mx-auto px-6 flex justify-between h-full items-center">
         {/* Logo */}
         <div className="text-lg font-bold">
           <Link href="/">{logoText}</Link>
@@ -33,7 +28,11 @@ const Navbar = () => {
             <Link
               key={link.name}
               href={link.href}
-              onClick={() => setLogoText(link.name)}
+              onClick={() => {
+                setLogoText(link.name);
+                setActiveLink(link.href);
+              }}
+              className={activeLink === link.href ? "text-blue-700 " : ""}
             >
               {link.name}
             </Link>
