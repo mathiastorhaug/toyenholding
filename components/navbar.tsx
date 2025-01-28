@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="text-black h-[80px] font-inter font-semibold">
-      <div className="container mx-auto px-6 flex justify-between h-full items-center">
+      <div className=" mx-auto px-6 flex justify-between h-full items-center">
         {/* Logo */}
         <div className="text-lg font-bold">
           <Link href="/">{logoText}</Link>

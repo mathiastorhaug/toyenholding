@@ -30,9 +30,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-full font-serif text-7xl">
+    <div className="flex flex-col h-full font-serif text-4xl md:text-7xl">
       {/* Main Content */}
-      <div className="flex-grow md:mt-[35vh]">
+      <div className="flex-grow lg:mt-[35vh]">
         <h1 className="whitespace-pre-line">“{currentQuote.quote}”</h1>
         <p className="mt-4">
           <span className="font-sans text-base font-bold">
@@ -55,14 +55,19 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="flex justify-between items-center h-[80px] font-sans pr-6 text-base font-bold">
-        <span
+        <button
           className="cursor-pointer  hover:underline"
           onClick={getRandomQuote}
         >
           Ny linje
-        </span>
+        </button>
 
-        <span className="font-sans text-base font-bold">Alle utgivelser</span>
+        <a
+          href="/releases"
+          className="font-sans text-base font-bold hover:underline hover:cursor-pointer"
+        >
+          Alle utgivelser
+        </a>
       </footer>
     </div>
   );
