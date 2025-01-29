@@ -18,45 +18,55 @@ export default function Home() {
       timestamp: "02:00",
       artist: "Mest seff, Fredfades",
     },
+    {
+      quote:
+        "Det her er forskjellen på normcore og hvermanns\nJeg kan slippe inn på Berghain i Bergans",
+      title: "Tech & Stil",
+      timestamp: "00:53",
+      artist: "Mest seff",
+    },
   ];
 
   // State to track the current quote
-  const [currentQuote, setCurrentQuote] = useState(quotes[0]);
+  // State to track the current quote index
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Function to generate a new random quote
+  // Function to generate a new random quote index (ensuring it's different from the current one)
   const getRandomQuote = () => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    setCurrentQuote(quotes[randomIndex]);
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * quotes.length);
+    } while (newIndex === currentIndex); // Ensure a different index
+
+    setCurrentIndex(newIndex);
   };
 
+  const currentQuote = quotes[currentIndex];
+
   return (
-    <div className="flex flex-col h-full font-serif text-4xl md:text-7xl">
+    <div className="flex flex-col h-full font-serif text-2xl lg:text-5xl">
       {/* Main Content */}
-      <div className="flex-grow lg:mt-[35vh]">
+      <div className="flex-grow space-y-4">
         <h1 className="whitespace-pre-line">“{currentQuote.quote}”</h1>
-        <p className="mt-4">
-          <span className="font-sans text-base font-bold">
+        <div className="flex">
+          <p className="font-sans text-sm font-bold hover:underline">
             {currentQuote.title}
-          </span>
-          <span className="font-sans text-base font-bold mx-2 text-gray-600">
-            •
-          </span>
-          <span className="font-sans text-base text-gray-600">
+          </p>
+          <p className="font-sans text-sm font-bold mx-2 text-black/60">•</p>
+          <p className="font-sans text-sm text-black/60">
             {currentQuote.timestamp}
-          </span>
-          <span className="font-sans text-base font-bold mx-2 text-gray-600">
-            •
-          </span>
-          <span className="font-sans text-base text-gray-600">
+          </p>
+          <p className="font-sans text-sm font-bold mx-2 text-black/60 ">•</p>
+          <p className="font-sans text-sm text-black/60">
             {currentQuote.artist}
-          </span>
-        </p>
+          </p>
+        </div>
       </div>
 
       {/* Footer */}
-      <footer className="flex justify-between items-center h-[80px] font-sans pr-6 text-base font-bold">
+      <footer className="flex justify-between items-center font-sans text-sm font-bold">
         <button
-          className="cursor-pointer  hover:underline"
+          className="cursor-pointer hover:underline"
           onClick={getRandomQuote}
         >
           Ny linje
@@ -64,7 +74,7 @@ export default function Home() {
 
         <a
           href="/releases"
-          className="font-sans text-base font-bold hover:underline hover:cursor-pointer"
+          className="font-sans text-sm font-bold hover:underline hover:cursor-pointer"
         >
           Alle utgivelser
         </a>

@@ -35,16 +35,13 @@ const Releases = () => {
   );
 
   return (
-    <div className="flex-grow lg:mt-[35vh]">
+    <div className="flex-grow">
       <div className="mb-20">
         <Search onSearch={setSearchQuery} />
       </div>
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 2xl:grid-cols-3">
+      <div className="grid gap-x-4 lg:gap-x-8 gap-y-[80px] grid-cols-1 md:grid-cols-2">
         {filteredAlbums.map((album, index) => (
-          <div
-            className="flex items-start justify-center min-w-[348px]"
-            key={index}
-          >
+          <div className="flex items-start justify-center" key={index}>
             <AlbumCover title={album.title} imageUrl={album.imageUrl} />
           </div>
         ))}
